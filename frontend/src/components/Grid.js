@@ -71,7 +71,7 @@ const Grid = ({ users, setUsers, setOnEdit}) => {
             </Thead>
             <Tbody>
                 {users.map((item, i) => (
-                    <Tr key={i}>
+                    <Tr key={item.ID}>
                         <Td width="30%">{item.NOME}</Td>
                         <Td width="30%">{item.EMAIL}</Td>
                         <Td width="20%" onlyWeb>{item.TELEFONE}</Td>

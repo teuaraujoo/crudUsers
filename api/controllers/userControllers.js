@@ -1,5 +1,15 @@
 import { db } from '../data/db.js';
 
+/* 
+## CRUD 
+
+CREATE - POST
+READ - GET
+UPDATE - PUT/PATCH
+DELETE - DELETE
+
+*/
+
 export const getUsers = (req, res) => {
     const q = 'SELECT * FROM USUARIOS';
     db.query(q, (err, data) => {

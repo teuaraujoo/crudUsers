@@ -21,18 +21,23 @@ const Container = styled.div`
 const Title = styled.h2``;
 
 function App() {
+  // 2 estados inciais
   const [users, setUsers] = useState([]);
   const [onEdit, setOnEdit] = useState(null);
 
+  // fetch api com axios para buscar dados do BD
   const getUsers = async () => {
     try {
       const res = await axios.get("http://localhost:8800");
+      // ordena em ordem alfabetica
       setUsers(res.data.sort((a, b) => (a.NOME > b.NOME ? 1 : -1)))
     } catch(error) {
       toast.error('Erro ao buscar usuário');
     }
   }
-
+  
+  // useEffect -> é utilizado para executar um código depois que o componente é renderizado.
+  // useEffect para buscar usuários ao carregar a página
   useEffect(() => {
     getUsers();
   }, [setUsers]);
