@@ -66,7 +66,6 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
             return toast.warn('Preencha todos os campos');
         }
 
-
         if (onEdit) {
             await axios.put(`http://localhost:8800/${onEdit.ID}`, {
                 NOME: user.nome.value,
@@ -74,7 +73,17 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
                 TELEFONE: user.telefone.value,
                 DATA_NASCIMENTO: user.data_nascimento.value,
             })
-                .then(({ data }) => toast.success(data))
+                .then(({ data }) => {
+                    toast.success(data)
+
+                    user.nome.value = '';
+                    user.email.value = '';
+                    user.telefone.value = '';
+                    user.data_nascimento.value = '';
+
+                    setOnEdit(null);
+                    getUsers();
+                })
                 .catch((error) => toast.error(error.response?.data || error.message));
         } else {
             await axios.post('http://localhost:8800/', {
@@ -83,18 +92,20 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
                 TELEFONE: user.telefone.value,
                 DATA_NASCIMENTO: user.data_nascimento.value,
             })
-                .then(({ data }) => toast.success(data))
+                .then(({ data }) => {
+                    toast.success(data)
+
+                    user.nome.value = '';
+                    user.email.value = '';
+                    user.telefone.value = '';
+                    user.data_nascimento.value = '';
+
+                    setOnEdit(null);
+                    getUsers();
+                })
                 .catch((error) => toast.error(error.response?.data || error.message));
         }
-
-        user.nome.value = '';
-        user.email.value = '';
-        user.telefone.value = '';
-        user.data_nascimento.value = '';
-
-        setOnEdit(null);
-        getUsers();
-    }
+    };
 
     return (
         <FormContainer ref={ref} onSubmit={handleSubmit}>

@@ -75,10 +75,10 @@ const Grid = ({ users, setUsers, setOnEdit}) => {
                         <Td width="30%">{item.NOME}</Td>
                         <Td width="30%">{item.EMAIL}</Td>
                         <Td width="20%" onlyWeb>{item.TELEFONE}</Td>
-                        <Td width="5%" alignCenter>
+                        <Td style={ { cursor: 'pointer' } } width="5%" alignCenter>
                             <FaEdit onClick={() => handleEdit(item)} />
                         </Td>
-                        <Td width="5%" alignCenter>
+                        <Td style={ { cursor: 'pointer' } } width="5%" alignCenter>
                             <FaTrash onClick={() => handleDelete(item.ID)} />
                         </Td>
                     </Tr>
