@@ -1,5 +1,5 @@
 import { findAllUsers, createUser, updateUser, deleteUser } from '../repositories/userRepository.js';
-import validarIdade from '../utils/validarIdade.js';
+import validarIdade from '../core/validarIdade.js';
 
 export const getAllUsers = (callback) => {
     findAllUsers(callback);
